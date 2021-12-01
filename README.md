@@ -78,3 +78,48 @@ Inferential Statistics (Connect the dots)
 
 1. https://www.codecogs.com/latex/eqneditor.php
 2. http://mathurl.com/
+
+---
+
+### Python
+
+### Missing values
+
+* create na
+    * np.nan
+* how many na in single dataframe
+    * df.isnull().sum()
+* remove na   
+    * df.dropna()
+* fill na
+    * df.fillna(value)
+    * df.fillna(method='bfill')
+    * df.fillna(method='ffill')
+    * df.fillna(df[col].mean())
+    * df.interpolate()
+    
+### Cleaning values
+
+* remove columns
+    * df.drop(<column name>, axis = 1)
+    
+* statistic overview
+    * df.describe()
+* rename column
+    * df.rename(columns = {'<old>':'<new>'}, {'<old>':'<new>'})
+* check any duplicate rows
+    * df.duplicated()
+* drop duplicate rows
+    * df.drop_duplicates()
+* check how many columns has na
+    * df.isnull().sum()
+    * df.isna().sum()
+* see unique value
+    * df.unique()
+* drop multiple columns
+    * 
+    
+### Export 
+
+* to csv
+    * df.to_csv('_.csv',index=False)
