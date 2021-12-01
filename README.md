@@ -42,9 +42,9 @@ Descriptive Statistics (Find the dots)
                 * method:
                     * erroneous observation
                     * scrutinizing outliers 
-                    * standardize data 
+                    * standardize data (easy to determine outliers with z score)
                         * subtract mean the data points and divide std 
-
+                        * ~ 0 mean and ~ 1 std
 Inferential Statistics (Connect the dots)
 * Explain those elements via relationships
 
@@ -117,9 +117,59 @@ Inferential Statistics (Connect the dots)
 * see unique value
     * df.unique()
 * drop multiple columns
-    * 
+    * df.drop(['column','column'],axis=1)
     
+
+### slicing
+
+* slicing dataframe
+    * df[[col,col]]
+
 ### Export 
 
 * to csv
     * df.to_csv('_.csv',index=False)
+    
+### Boxplot 
+
+* one column
+```
+fig, ax = plt.subplots(figsize=(10,8))
+
+sns.boxplot(
+    numeric_data['mobile_wt'],
+    orient='v'
+)
+```
+
+* multiple column
+```
+fig, ax = plt.subplots(figsize=(10,8))
+
+bp = sns.boxplot(data=numeric_data)
+bp.set_xticklabels(bp.get_xticklabels(),rotation=90)
+```
+
+* remove outliers 
+```
+outliers_removed_data = numeric_data[~((numeric_data < (Q1 - 1.5 * IQR)) \
+    | (numeric_data > (Q3 + 1.5 * IQR))).any(axis=1)]
+```
+
+* index
+    * reset index
+    ```
+  scaled_data = scaled_data.reset_index()
+    ```
+
+* combine dataframe 
+    * pd.concat
+    ```
+    scaled_data = scaled_data.reset_index()
+    categorical_data = categorical_data.reset_index()
+    pd.concat(
+        [scaled_data,categorical_data], axis=1
+    )
+    ```
+
+* ml : classification model 
