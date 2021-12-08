@@ -47,7 +47,9 @@ Descriptive Statistics (Find the dots)
                         * ~ 0 mean and ~ 1 std
 Inferential Statistics (Connect the dots)
 * Explain those elements via relationships
-
+    1. Processing data for use
+    2. Build and refine models for ml , prediction
+    3. Incorporate real world data into models 
 ---
 
 ### Data Cleansing
@@ -173,3 +175,86 @@ outliers_removed_data = numeric_data[~((numeric_data < (Q1 - 1.5 * IQR)) \
     ```
 
 * ml : classification model 
+
+```
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,y,
+    test_size=0.2,
+    random_state=101
+)
+
+logistic_model = LogisticRegression(
+    solver='lbfgs',
+    multi_class='multinomial', # categorize more than 2 categories
+    max_iter=1000
+)
+
+logistic_model.fit(X_train,y_train)
+logistic_model.score(X_test, y_test)
+```
+
+---
+
+# Extract Insight 
+
+1. Standardization and normalization
+   * normalizing row wise
+   * standardization column wise
+   * scaling column wise     
+2. Binning and sampling
+3. Big data
+4. Batch data vs  Streaming data
+    a. Event time
+    b. Processing time
+## Pre processing   
+### Standardizing Data
+* for numeric features
+* standardized data has mean 0 and variance 1 
+```
+xi - avg(x) / stdev(x)
+```
+* feature wise (column wise)
+```
+z = xi - mean(x) / stdev(x)
+```
+* mean is a measure of central tendency , standard deviation is a measure of dispersion
+* mean is sensitive to outlier , more **robust standardization** use
+    ```
+    z = xi - median(x) / inter-quartile range(x)
+    ```
+    * median is a measure of central tendency
+    * inter-quartile range is a measure of dispersion
+
+### Normalization Data
+* process of scaling input vectors individually to unit norm(unit magnitude), to simplify cosine similarity calculations
+* applied to data feed into ml
+* cosine similarity
+    * measure of similarity between 2 non zero vectors , widely used in ml
+* orthogonal vectors ( right angle , indepedent)
+    * orthogonal vectors represent uncorrelated data 
+    * cosine of 90 deg = 0
+* cosine of 0 deg = 1 ( parallel , correlation equal 1 )    
+* cosine of 180 deg = -1 (opposite, correlation equal -1)
+* cosine similarity
+    ```    
+    cos(0) = A.B / ||A|| ||B||
+    ||A||2 = XA2 + YA2 + ZA2
+    ||B||2 = XB2 + YB2 + ZB2
+     A.B = XAXB + YAYB + ZAZB
+    ```
+* Pre convert A and B unit norm vectors to simplify calculation
+```
+a = A / ||A|| = (xA,yA,zA)/ sqrt(xA2 + yA2 + zA2)
+
+b = B / ||B|| = (xB,yB,zB)/sqrt(xB2 + yB2 + zB2)
+```
+
+* Different norms 
+    * Normalization is general technique of convert a vector to unit norm
+    * 3 different norms for vector
+        * L1 , sum of absolute values of components of vector is equal to 1
+        * L2 , square root of the sum of square of the vector coordinates is equal to 1
+        * max norm, largest absolute value of elements of vector is set to 1
