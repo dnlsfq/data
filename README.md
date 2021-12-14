@@ -258,3 +258,65 @@ b = B / ||B|| = (xB,yB,zB)/sqrt(xB2 + yB2 + zB2)
         * L1 , sum of absolute values of components of vector is equal to 1
         * L2 , square root of the sum of square of the vector coordinates is equal to 1
         * max norm, largest absolute value of elements of vector is set to 1
+
+### Binning data
+* numeric continuous data convert to categorical data
+* **Data binarization** , convert continuous variable into a binary categorical variable based on threshold specified by user 
+* **Discretizing data** , generalizes idea of binarization, converts continuous data into categorical data arranged into a specified
+number of bins 
+* binning categories:
+    * uniform : bin widths are constant in each feature 
+    * quantile : all bins in each feature have approximately the same number of samples 
+    * k-means : bins based on the centroids of k-means clustering procedure
+    
+### Transactional and Analytical Processing 
+
+* Transactional Processing - Traditional RDBMS
+* Analytical Processing - Data Warehouse
+
+### Big Data
+
+* Volume : Amount of data
+* Variety : Number and type of source
+* Velocity : Batch and streaming
+* Veracity : Can it be trusted
+* Value : Is it useful
+* scaling for big data :
+    * vertical scaling
+        * as data size grows
+            * more memory, more cpu, mode disk space 
+    * horizontal scaling
+        * as data size grows
+            * add more generic server 
+
+* stream processing
+    *  data received as stream
+        * log
+        * tweet
+        * sensor data
+    
+* Notion time
+    * event time : originally event occured
+    * ingestion time : enter processing time 
+    * processing time : buffering processing entities
+    
+### Convert Numeric Representations of Text
+
+* One-hot
+  * represent each word in text by its presence or absence
+* Frequency based
+  * detect frequnecy on each word
+        * count vector - how often word occur
+        * TF-IDF : Term Frequency and IDF , Inverse Document Frequency - how often occur, weight and significant the word is
+        * co-occurrence - similar words occur together : context window - window centered around a word , includes a certain no. of neighboring words
+            * co occurence matrix - no of times two words occured together
+* Prediction based
+    * capture meaning and semantic relationship generated using ML models 
+
+### Images data as matrix
+
+* images as matrices
+* image as 3d matrix (h,w,rgb)
+    * height
+    * width
+    * color channel
